@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Things I Wish I Did This Summer</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: red;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        #nameDisplay {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        #wishesContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Summer Wishes</h1>
+    </header>
+
+    <main>
+        <form id="nameForm">
+            <label for="userName">Enter your name:</label>
+            <input type="text" id="userName" name="userName">
+        </form>
+
+        <div id="nameDisplay"></div>
+
+        <div id="wishesContainer">
+       
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Thad <span id="currentYear"></span></p>
+    </footer>
+
+    <script>
+       
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+
+        const userNameInput = document.getElementById('userName');
+        const nameDisplay = document.getElementById('nameDisplay');
+        const wishesContainer = document.getElementById('wishesContainer');
+
+
+        function createWishCard(wishText) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.textContent = wishText;
+            wishesContainer.appendChild(card);
+        }
+
+        userNameInput.addEventListener('input', (event) => {
+            const name = event.target.value;
+            nameDisplay.textContent = name ? `Wishes for ${name}` : '';
+            wishesContainer.innerHTML = ''; 
+
+            if (name) {
+
+                createWishCard(`Wish #1 for ${name}: Meet Stray Kids.`);
+                createWishCard(`Wish #2 for ${name}: Travel to a new place.`);
+                createWishCard(`Wish #3 for ${name}: Read some books.`);
+            }
+        });
+    </script>
+</body>
+</html>
