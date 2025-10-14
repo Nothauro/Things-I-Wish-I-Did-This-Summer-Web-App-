@@ -1,1 +1,62 @@
-# Things-I-Wish-I-Did-This-Summer-Web-App-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Things I Wish I Did This Summer</title>
+</head>
+<body>
+
+    <header>
+        <h1>My Summer Wishes</h1>
+    </header>
+
+    <main>
+        <form id="nameForm">
+            <label for="userName">Enter your name:</label>
+            <input type="text" id="userName" name="userName">
+        </form>
+
+        <div id="nameDisplay"></div>
+
+        <div id="wishesContainer">
+       
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Thad <span id="currentYear"></span></p>
+    </footer>
+
+    <script>
+       
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+
+        const userNameInput = document.getElementById('userName');
+        const nameDisplay = document.getElementById('nameDisplay');
+        const wishesContainer = document.getElementById('wishesContainer');
+
+
+        function createWishCard(wishText) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.textContent = wishText;
+            wishesContainer.appendChild(card);
+        }
+
+        userNameInput.addEventListener('input', (event) => {
+            const name = event.target.value;
+            nameDisplay.textContent = name ? `Wishes for ${name}` : '';
+            wishesContainer.innerHTML = ''; 
+
+            if (name) {
+
+                createWishCard(`Wish #1 for ${name}: Meet Stray Kids.`);
+                createWishCard(`Wish #2 for ${name}: Travel to a new place.`);
+                createWishCard(`Wish #3 for ${name}: Read some books.`);
+            }
+        });
+    </script>
+</body>
+</html>
